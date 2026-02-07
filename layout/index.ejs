@@ -113,33 +113,44 @@
           %>
           <div class="post-card<%= postThumbnail ? ' has-thumbnail' : '' %>">
             <div class="post-card-content">
-              <div class="post-header">
-                <i class="fas fa-file-alt"></i>
-                <span class="post-title">
-                  <a href="<%- url_for(post.path) %>"><%- post.title %></a>
-                  <% if (post.sticky || post.top) { %>
-                    <span class="sticky-indicator" title="<%= __('pinned_post') || 'Pinned Post' %>">
-                      <i class="fas fa-thumbtack"></i>
+              <div class="post-card-top">
+                <div class="post-card-info">
+                  <div class="post-header">
+                    <i class="fas fa-file-alt"></i>
+                    <span class="post-title">
+                      <a href="<%- url_for(post.path) %>"><%- post.title %></a>
+                      <% if (post.sticky || post.top) { %>
+                        <span class="sticky-indicator" title="<%= __('pinned_post') || 'Pinned Post' %>">
+                          <i class="fas fa-thumbtack"></i>
+                        </span>
+                      <% } %>
                     </span>
-                  <% } %>
-                </span>
-              </div>
-              
-              <div class="post-meta">
-                <span class="date">
-                  <i class="fas fa-calendar-alt"></i>
-                  <%- date(post.date, config.date_format) %>
-                </span>
-                <%_ if(post.categories && post.categories.length){ _%>
-                  <span class="category">
-                    <i class="fas fa-folder"></i>
-                    <%- list_categories(post.categories, {
-                      show_count: false,
-                      style: 'none',
-                      separator: ' '
-                    }) %>
-                  </span>
-                <%_ } _%>
+                  </div>
+                  
+                  <div class="post-meta">
+                    <span class="date">
+                      <i class="fas fa-calendar-alt"></i>
+                      <%- date(post.date, config.date_format) %>
+                    </span>
+                    <%_ if(post.categories && post.categories.length){ _%>
+                      <span class="category">
+                        <i class="fas fa-folder"></i>
+                        <%- list_categories(post.categories, {
+                          show_count: false,
+                          style: 'none',
+                          separator: ' '
+                        }) %>
+                      </span>
+                    <%_ } _%>
+                  </div>
+                </div>
+                <% if (postThumbnail) { %>
+                  <div class="post-thumbnail">
+                    <a href="<%- url_for(post.path) %>">
+                      <img src="<%- postThumbnail %>" alt="<%- post.title %>" loading="lazy">
+                    </a>
+                  </div>
+                <% } %>
               </div>
               
               <div class="post-excerpt">
@@ -153,13 +164,6 @@
                 </a>
               </div>
             </div>
-            <% if (postThumbnail) { %>
-              <div class="post-thumbnail">
-                <a href="<%- url_for(post.path) %>">
-                  <img src="<%- postThumbnail %>" alt="<%- post.title %>" loading="lazy">
-                </a>
-              </div>
-            <% } %>
           </div>
         <%_ }); _%>
       </div>
