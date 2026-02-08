@@ -77,7 +77,13 @@
             <span class="date">
               <i class="fas fa-calendar-alt"></i>
               <%= date(page.date, config.date_format) %>
-            </span>            <% if (page.categories && page.categories.length) { %>
+            </span>
+            <% if (page.updated && page.updated.isValid() && page.updated.diff(page.date, 'minutes') > 1) { %>
+            <span class="updated-date">
+              <i class="fas fa-sync-alt"></i>
+              <%- __('post_updated') %> <%= date(page.updated, config.date_format) %>
+            </span>
+            <% } %>            <% if (page.categories && page.categories.length) { %>
               <span class="categories">
                 <i class="fas fa-folder"></i>
                 <div class="categories-list">

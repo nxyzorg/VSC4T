@@ -262,6 +262,17 @@
   color: var(--vscode-link);
 }
 
+/* 更新日期样式 */
+.post-meta .updated-date {
+  color: var(--vscode-text-light);
+  font-size: 0.9em;
+}
+
+.post-meta .updated-date i {
+  color: var(--vscode-success, #4ec9b0);
+  font-size: 0.85em;
+}
+
 /* 置顶文章指示器样式 */
 .sticky-indicator {
   display: inline-flex;
